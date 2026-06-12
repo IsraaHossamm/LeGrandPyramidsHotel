@@ -1,0 +1,38 @@
+<section
+  id="home"
+  scroll-mt-20
+  class="h-screen p-3 lg:bg-center bg-cover bg-no-repeat lg:bg-cover bg-fixed lg:bg-[linear-gradient(to_right,rgba(0,0,0,0.5),rgba(0,0,0,0.9)),url(/homeBG.png)] bg-[linear-gradient(to_right,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/homeBG.png)]"
+>
+  <div
+    class="flex h-full items-center justify-center px-6 text-center lg:justify-end lg:px-[8%] lg:text-right"
+  >
+    <div class="max-w-2xl text-[#fdf5e6]">
+      <h1
+        class="mb-4 font-serif text-4xl font-bold uppercase leading-tight tracking-wider sm:text-5xl lg:text-5xl"
+      >
+        Experience an<br class="hidden lg:block" />
+        Unforgettable <br class="hidden lg:block" />
+        stay
+      </h1>
+
+      <p
+        class="mb-8 font-sans text-base font-light leading-relaxed opacity-90 sm:text-lg lg:text-xl"
+      >
+        Welcome to Le Grand Pyramids View, where history meets modern comfort. Indulge in
+        breathtaking views and exceptional service.
+      </p>
+
+      <div class="mb-6 h-[2px] w-16 bg-[#c5a059] max-lg:mx-auto lg:ml-auto"></div>
+
+      <button
+        (click)="openWhatsapp()"
+        class="group relative text-sm font-medium tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer"
+      >
+        Book Your Unforgettable Stay
+        <span
+          class="absolute -bottom-1 left-0 h-[1px] w-0 bg-[#c5a059] transition-all duration-300 group-hover:w-full"
+        ></span>
+      </button>
+    </div>
+  </div>
+</section>

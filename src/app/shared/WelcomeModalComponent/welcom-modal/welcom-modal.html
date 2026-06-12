@@ -1,0 +1,87 @@
+@if (isOpen) {
+  <!-- Backdrop Overlay -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <!-- Modal Card -->
+    <div
+      class="relative w-full max-w-md overflow-hidden bg-white rounded-2xl shadow-2xl border border-slate-100 transform transition-all"
+    >
+      <!-- Top Accent Line -->
+      <div class="h-2 bg-gradient-to-r from-amber-500 to-amber-600"></div>
+
+      <div class="p-6 sm:p-8">
+        <!-- Header -->
+        <div class="text-center mb-6">
+          <div
+            class="inline-flex items-center justify-center w-12 h-12 mb-3 rounded-full bg-amber-50 text-amber-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9.813 15.904 9 21l8.982-11.795H14.19l.813-5.109L6 16l3.813-.096Z"
+              />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900">Exclusive Direct Booking Offer</h3>
+          <p class="text-xs text-slate-500 mt-1">Book here for the best rates guaranteed</p>
+        </div>
+
+        <!-- Info Content -->
+        <div class="space-y-4">
+          <!-- Discount Info -->
+          <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-100/80">
+            <p class="text-sm text-slate-700 leading-relaxed">
+              ✨ <strong class="text-amber-900">Best Rate Guaranteed:</strong> Enjoy an exclusive
+              direct-booking discount and zero hidden fees! Your special rate will be automatically
+              applied when you secure your booking with us on WhatsApp.
+            </p>
+          </div>
+
+          <!-- Check-in / Check-out Details -->
+          <!-- <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 grid grid-cols-2 gap-4 text-center">
+                    <div>
+                        <span
+                            class="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Check-In</span>
+                        <span class="text-sm font-bold text-slate-800 mt-0.5 block">From 2:00 PM</span>
+                    </div>
+                    <div class="border-l border-slate-200">
+                        <span
+                            class="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Check-Out</span>
+                        <span class="text-sm font-bold text-slate-800 mt-0.5 block">Until 11:00 AM</span>
+                    </div>
+                </div> -->
+        </div>
+
+        <!-- Professional Bottom Footer Bar -->
+        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+          <!-- Premium Custom Checkbox Alignment -->
+          <label class="flex items-center gap-2.5 cursor-pointer select-none group">
+            <input
+              type="checkbox"
+              [(ngModel)]="dontShowAgain"
+              class="w-4 h-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500/30 accent-amber-600 transition cursor-pointer"
+            />
+            <span class="text-xs font-medium text-slate-500 group-hover:text-slate-700 transition">
+              Don't show this again
+            </span>
+          </label>
+
+          <!-- Dismiss Button -->
+          <button
+            (click)="closeModal()"
+            class="py-2 px-5 text-sm font-semibold rounded-lg bg-slate-900 text-white hover:bg-slate-800 active:scale-[0.98] transition-all duration-150 shadow-sm shadow-slate-900/10"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

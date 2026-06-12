@@ -1,0 +1,83 @@
+[
+{
+    "id": 101,
+    "title": "Deluxe Double Room With Balcony",
+    "description": "A stylish double room featuring a king-size bed, private balcony, and a relaxing atmosphere perfect for couples.",
+    "bedType": "1 King bed",
+    "highlights": [" Comfort & Cozy", "PRIVATE BALCONY WITH PYRAMID VIEW" , " Max capacity: 2 guests"],
+   
+     "images": [
+      "/Room101/main101.jpeg",
+      "/Room101/balacony101.jpeg",
+      "/Room101/bathroom101.jpeg",
+      "/Room101/assets101.jpeg",
+      "/Room101/assets101 (2).jpeg"
+    ]
+  },
+{
+     "id": 102,
+    "title": "Deluxe Double or Twin Room With Balcony",
+    "description": "Comfortable room with twin beds or double setup, offering a private balcony and elegant interior for a pleasant stay.",
+    "bedType": "2 single bed" ,
+     "highlights": [" suitable for friends", "PRIVATE BALCONY WITH PYRAMID VIEW" , " Max capacity: 2 guests"],
+     "images": [
+      "/Room102/amenties.jpeg",
+      "/Room102/bathroom102.jpeg",
+      "assets/rooms/suite-bathroom.jpg",
+      "assets/rooms/suite-bathroom.jpg",
+      "assets/rooms/suite-view.jpg"
+    ]
+  },
+{
+    "id": 103,
+    "title": "Budget Single or Double Room",
+    "description": "A cozy budget-friendly room with modern essentials, designed for solo travelers or couples seeking comfort.",
+    "bedType": "1 King bed" ,
+     "highlights": [
+      "MODERN AMENITIES",
+      "BUDGET COMFORT","Max capacity: 2 guests"
+    ],
+     "images": [
+      "/Room103/room103.jpeg",
+      "/Room103/bathroom103.jpeg",
+      "assets/rooms/suite-bathroom.jpg",
+      "assets/rooms/suite-bathroom.jpg",
+      "assets/rooms/suite-view.jpg"
+    ]
+  },
+{
+     "id": 104,
+    "title": "Superior Quadruple Room or Family Room",
+    "description": "Spacious family room with two king beds, ideal for groups or families looking for extra comfort and convenience.",
+    "bedType": "2 King bed",
+    "highlights": [
+      "FAMILY CONVENIENCE",
+      "EXTRA SPACIOUS"," Max capacity: 4 guests"
+    ],
+     "images": [
+      "/Room104/main104.jpeg",
+      "/Room104/bathroom104.jpeg",
+      "/Room104/bathroom104 (2).jpeg",
+      "assets/rooms/suite-bathroom.jpg",
+      "assets/rooms/suite-view.jpg"
+    ]
+  },
+{
+    "id": 105,
+    "title": "Deluxe Suite with Spa Bath & Panoramic View",
+    "description": "Luxurious suite featuring a spa bath, king-size bed, and breathtaking panoramic views for a memorable experience.",
+    "bedType": "1 King bed",
+    "highlights": [
+      "PRIVATE SPA BATH",
+      "PANORAMIC pyramids view"," Max capacity: 2 guests"
+    ],
+     "images": [
+     "/Room105/main105.jpeg",
+     "/Room105/room 105.jpeg",
+     "/Room105/bed105.jpeg",
+     "/Room105/bathroom105.jpeg",
+     "/Room105/room105.jpeg"
+    ]
+  }
+  
+]

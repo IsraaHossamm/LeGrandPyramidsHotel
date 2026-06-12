@@ -1,0 +1,58 @@
+<section class="bg-[#f7f5ec] px-4 pt-4 pb-1 lg:p-6 scroll-mt-20 rounded-2xl" id="rooms">
+  <div class="block lg:hidden">
+    <div
+      #mobileScrollContainer
+      (scroll)="onMobileScroll($event)"
+      class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 no-scrollbar"
+    >
+      @if (rooms.length > 0) {
+        @for (room of rooms; track room.id) {
+          <div class="w-full shrink-0 snap-center snap-always">
+            <app-room-details [room]="room"></app-room-details>
+          </div>
+        }
+      } @else {
+        <p class="text-center p-4 w-full">Loading rooms...</p>
+      }
+    </div>
+
+    @if (rooms.length > 1) {
+      <div class="flex justify-center items-center w-full gap-2 mt-4 mb-2">
+        @for (room of rooms; track room.id; let i = $index) {
+          <div
+            class="h-2.5 w-2.5 rounded-full transition-colors duration-300"
+            [class.bg-[#9A7B43]]="currentRoomIndex === i"
+            [class.bg-gray-300]="currentRoomIndex !== i"
+          ></div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="hidden lg:flex lg:flex-row lg:gap-4">
+    <div class="lg:w-3/4 lg:pb-10 items-center">
+      @if (selectedRoom) {
+        <app-room-details [room]="selectedRoom"></app-room-details>
+      } @else {
+        <div class="flex items-center justify-center h-64 text-gray-400">
+          <p>Select a room to view details</p>
+        </div>
+      }
+    </div>
+
+    <div class="lg:w-1/4 overflow-y-auto space-y-4">
+      @if (rooms.length > 0) {
+        @for (item of rooms; track item.id) {
+          <app-room-card
+            [room]="item"
+            [isActive]="selectedRoom?.id === item.id"
+            (viewDetails)="setSelectedRoom($event)"
+          >
+          </app-room-card>
+        }
+      } @else {
+        <p class="text-center p-4">Loading rooms...</p>
+      }
+    </div>
+  </div>
+</section>

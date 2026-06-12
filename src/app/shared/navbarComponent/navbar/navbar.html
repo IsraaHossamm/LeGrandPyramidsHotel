@@ -1,0 +1,100 @@
+<nav class="bg-[#f7f5ec] fixed w-full z-20 top-0 start-0 border-b border-default">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-2">
+    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="/legrandlogo.png" class="h-20" alt="le grand Logo" />
+      <span class="font-bold text-[#6D5031]">{{ displayText }} </span>
+    </a>
+
+    <button
+      (click)="toggleMenu()"
+      type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 17h16"
+        />
+      </svg>
+    </button>
+
+    <div class="hidden w-full md:block md:w-auto" [class.hidden]="!isMenuOpen" id="navbar-default">
+      <ul
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base md:flex-row md:space-x-8 md:mt-0 md:border-0"
+      >
+        <!-- HOME LINK -->
+        <li>
+          <a
+            (click)="scrollToSection('home')"
+            [class]="
+              activeFragment === 'home'
+                ? 'block py-2 px-3 cursor-pointer text-white bg-[#5A4026] rounded md:bg-transparent md:text-[#5A4026] md:p-0 font-bold'
+                : 'block py-2 px-3 cursor-pointer text-heading rounded hover:bg-[#5A4026] hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-[#5A4026] md:p-0'
+            "
+          >
+            Home
+          </a>
+        </li>
+
+        <!-- ROOMS LINK -->
+        <li>
+          <a
+            (click)="scrollToSection('rooms')"
+            [class]="
+              activeFragment === 'rooms'
+                ? 'block py-2 px-3 cursor-pointer text-white bg-[#5A4026] rounded md:bg-transparent md:text-[#5A4026] md:p-0 font-bold'
+                : 'block py-2 px-3 cursor-pointer text-heading rounded hover:bg-[#5A4026] hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-[#5A4026] md:p-0'
+            "
+          >
+            Rooms
+          </a>
+        </li>
+
+        <!-- FACILITIES LINK -->
+        <li>
+          <a
+            (click)="scrollToSection('facalities')"
+            [class]="
+              activeFragment === 'facalities'
+                ? 'block py-2 px-3 cursor-pointer text-white bg-[#5A4026] rounded md:bg-transparent md:text-[#5A4026] md:p-0 font-bold'
+                : 'block py-2 px-3 cursor-pointer text-heading rounded hover:bg-[#5A4026] hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-[#5A4026] md:p-0'
+            "
+          >
+            Facilities
+          </a>
+        </li>
+
+        <!-- REVIEWS LINK -->
+        <li>
+          <a
+            (click)="scrollToSection('reviews')"
+            [class]="
+              activeFragment === 'reviews'
+                ? 'block py-2 px-3 cursor-pointer text-white bg-[#5A4026] rounded md:bg-transparent md:text-[#5A4026] md:p-0 font-bold'
+                : 'block py-2 px-3 cursor-pointer text-heading rounded hover:bg-[#5A4026] hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-[#5A4026] md:p-0'
+            "
+          >
+            Reviews
+          </a>
+        </li>
+
+        <!-- CONTACT LINK -->
+        <li>
+          <a
+            (click)="scrollToSection('contact')"
+            [class]="
+              activeFragment === 'contact'
+                ? 'block py-2 px-3 cursor-pointer text-white bg-[#5A4026] rounded md:bg-transparent md:text-[#5A4026] md:p-0 font-bold'
+                : 'block py-2 px-3 cursor-pointer text-heading rounded hover:bg-[#5A4026] hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-[#5A4026] md:p-0'
+            "
+          >
+            Contact us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

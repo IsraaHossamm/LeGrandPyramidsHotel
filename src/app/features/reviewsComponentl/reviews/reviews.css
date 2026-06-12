@@ -1,0 +1,4 @@
+/* Optional: Smooth fade for carousel transition */
+.grid div {
+  transition: opacity 0.3s ease-in-out;
+}

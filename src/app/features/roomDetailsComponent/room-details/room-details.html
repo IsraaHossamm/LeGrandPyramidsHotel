@@ -1,0 +1,49 @@
+<div
+  class="bg-neutral-primary-soft block rounded-2xl font-sans text-[#1A1A1A] lg:sticky lg:top-[10%] border border-gray-200"
+>
+  <div class="lg:flex">
+    <div class="h-85 w-full lg:w-3/4 md:h-170 lg:overflow-hidden xl:h-145 md:mx-auto">
+      <img
+        [src]="activeImage"
+        alt="pyramids view room"
+        class="w-full h-full object-cover rounded-t-xl lg:rounded-tl-2xl"
+      />
+    </div>
+
+    <div class="lg:w-1/4 flex flex-col p-3 lg:p-0 p-2">
+      <div class="bg-neutral-primary-soft block lg:p-6 rounded-2xl font-sans text-[#1A1A1A]">
+        <h3
+          class="text-xl xl:text-xxxl md:text-xxl font-bold uppercase tracking-tight mb-1 lg:mb-2"
+        >
+          {{ room?.title }}
+        </h3>
+
+        <div class="w-20 h-[3px] bg-[#B08D4F] mb-4"></div>
+
+        <p class="text-sm text-gray-500 md:text-xl xl:text-xl">
+          {{ room?.description }}
+        </p>
+
+        <div class="mt-3">
+          <button
+            (click)="openWhatsapp(room?.title)"
+            class="py-3 px-4 bg-white border cursor-pointer border-[#9A7B43] text-[#9A7B43] rounded-xl font-bold uppercase text-sm hover:bg-[#866a3a] hover:text-white transition-colors"
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-x-3 pt-1 px-2 pb-2 lg:py-2 lg:px-1">
+    @for (img of room?.images; track $index) {
+      <div
+        class="w-1/4 h-15 md:h-27 overflow-hidden rounded-xl cursor-pointer"
+        (click)="activeImage = img"
+      >
+        <img [src]="img" class="w-full h-full object-cover" />
+      </div>
+    }
+  </div>
+</div>

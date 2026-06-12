@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Rooftop Terrace with Panoramic Pyramid Views",
+    "description": "Relax in our exclusive rooftop lounge featuring breathtaking panoramic views of the Giza Pyramids, perfect for sunrise breakfasts, sunset gatherings, and unforgettable evenings.",
+    "img": "/facilities/Rooftop pyramids view.jpg",
+    "icon": "fa-solid fa-cloud-sun"
+  },
+  {
+    "id": 2,
+    "title": "International & Traditional Breakfast Selection",
+    "description": "Start your day with a carefully curated breakfast experience offering Modern Egyptian specialties, authentic traditional dishes, and a variety of European favorites.",
+    "img": "/facilities/breakfast with pyramids view.jfif",
+    "icon": "fa-solid fa-utensils"
+  },
+  {
+    "id": 3,
+    "title": "Pyramid-View Café & Restaurant",
+    "description": "Enjoy exceptional dining and handcrafted beverages in our elegant café and restaurant overlooking the iconic Pyramids in a warm and sophisticated atmosphere.",
+    "img": "/facilities/reataurant with pyramids view.jfif",
+    "icon": "fa-solid fa-mug-hot"
+  },
+  {
+    "id": 4,
+    "title": "Complimentary High-Speed Wi-Fi",
+    "description": "Stay seamlessly connected throughout your stay with fast, reliable, and complimentary high-speed Wi-Fi available across all rooms and public areas.",
+    "img": "/facilities/wifi.avif",
+    "icon": "fa-solid fa-wifi"
+  },
+  {
+    "id": 5,
+    "title": "Daily Housekeeping Service",
+    "description": "Experience comfort and cleanliness every day with our professional housekeeping service, ensuring your room remains fresh, organized, and welcoming.",
+    "img": "/facilities/cleaning.png ",
+    "icon": "fa-solid fa-broom"
+  },
+  {
+    "id": 6,
+    "title": "Private Daily Tours Across Egypt",
+    "description": "Discover Egypt in comfort with customized private tours to top destinations including Cairo, Luxor, Aswan, Alexandria, desert adventures, and Nile experiences.",
+    "img": "/facilities/giza pyramids tour.jfif",
+    "icon": "fa-solid fa-ankh"
+  }
+]

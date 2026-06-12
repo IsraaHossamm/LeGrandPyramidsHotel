@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "guestName": "Lisa",
+    "guestImg": "/reviews/Lisa.png",
+    "body": "I had a truly exceptional stay at this hotel. From the moment l arrived, the service was impeccable. Waking up to such a sight was a dream come true. The entire staff deserves a special mention; they were professional, attentive, and genuinely kind, ensuring every detail of my stay was perfect. The confort of the property, combined with such warm hospitality, made my trip unforgettable. I cannot recommend this hotel highly enough for anyone looking for an experience in Egypt.",
+    "rate": 5,
+    "platform": "Google Maps",
+    "platformIcon": "/reviews/google_logo.webp"
+  },
+  {
+    "id": 2,
+    "guestName": "徐嫤顄",
+    "guestImg": "/reviews/徐嫤顄.png",
+    "body": "Israa and her brother are truly kind people we met in Giza. I had some problems that weren’t part of their duties, but they still helped me solve them. As for the accommodation, the breakfast is really good, the room is cozy, and there’s hot water for the shower! Everything here is wonderful.",
+    "rate": 5,
+    "platform": "Google Maps",
+    "platformIcon": "/reviews/google_logo.webp"
+  },
+  {
+    "id": 3,
+    "guestName": "Tajmina",
+    "guestImg": "/reviews/Tajmina.jfif",
+    "body": "Had the most amazing stay here. The team was incredibly courteous and kind, going above and beyond to accommodate every request. The rooftop is stunning—spacious with perfect views, perfecttt for enjoying shisha which the team brings to you! The food was absolutely delicious and very affordable. I would highly recommend this place to anyone and would love to return again. ",
+    "rate": 10,
+    "platform": "Booking.com",
+    "platformIcon": "../../reviews/Booking.com_Icon.svg.png"
+  },
+  {
+    "id": 4,
+    "guestName": "Denisa",
+    "guestImg": "",
+    "body": "The location is perfect with nice view from the terrace. Stuff is extremely helpful, especially big thanks for the immediate help when we needed you. Very useful information about the taxi drivers, how it works in Egypt and food. We even hot a goodbye present.",
+    "rate": 9,
+    "platform": "Booking.com",
+    "platformIcon": "../../reviews/Booking.com_Icon.svg.png"
+  },
+  {
+    "id": 5,
+    "guestName": "Fahad",
+    "guestImg": "",
+    "body": "Staff were very friendly. Don’t have lift. But was ok for us.",
+    "rate": 10,
+    "platform": "Booking.com",
+    "platformIcon": "../../reviews/Booking.com_Icon.svg.png"
+  },
+  {
+    "id": 6,
+    "guestName": "Nicolas",
+    "guestImg": "/reviews/Nicolas.jpg",
+    "body": "The staff was very kind and welcoming, the owner gave me some tips for visiting the Pyramids and dealing with vendors. Location is very convenient, the hotel is five minutes away (walking) from one of the entrances to the Pyramids, and there are some ATMs nearby. Rooms are clean and comfortable. Also, there's a nice view of the Pyramids from the terrace.",
+    "rate": 10,
+    "platform": "Booking.com",
+    "platformIcon": "../../reviews/Booking.com_Icon.svg.png"
+  },
+  {
+    "id": 7,
+    "guestName": "Toby Savage",
+    "guestImg": "",
+    "body": "Two of us stayed in a twin room at Le Grand Pyramids View Hotel for three nights. The location is right in the heart of the Pyramid tourist area with easy access on foot to Pyramids. The staff were most helpful and friendly, offering flexibility on timings. Our room was comfortable with big double beds and quality linen. Despite the location it was very quiet at night. The air conditioning was efficient and the shower was powerful and hot. Breakfast on the rooftop overlooking the pyramids was a great start to our day in this important historic area.",
+    "rate": 4,
+    "platform": "Google Maps",
+    "platformIcon": "/reviews/google_logo.webp"
+  },
+  {
+    "id": 8,
+    "guestName": "Aylin Terziyan",
+    "guestImg": "../../reviews/Aylin.png",
+    "body": "It was a whole experience!! The view is amazing. The people are so kind. Enjoyed every second.",
+    "rate": 5,
+    "platform": "Google Maps",
+    "platformIcon": "/reviews/google_logo.webp"
+  },
+  {
+    "id": 9,
+    "guestName": "Aletta",
+    "guestImg": "",
+    "body": "Excellent price value, friendly and helpful stuff, we got what was promised, all in line with what is showing on Booking. Simple and functional place to stay with A/C and terrace with a view.",
+    "rate": 9,
+    "platform": "Booking.com",
+    "platformIcon": "../../reviews/Booking.com_Icon.svg.png"
+  }
+]
