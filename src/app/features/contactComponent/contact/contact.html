@@ -154,7 +154,24 @@
                 placeholder="Your Name"
                 class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#a67c37]"
               />
+              @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                <div class="flex flex-col mt-1">
+                  @if (contactForm.get('name')?.hasError('required')) {
+                    <span class="text-red-500 text-sm ps-1"> • Name is required</span>
+                  }
+
+                  @if (
+                    contactForm.get('name')?.hasError('minlength') ||
+                    contactForm.get('name')?.hasError('maxlength')
+                  ) {
+                    <span class="text-red-500 text-sm ps-1">
+                      • Name must be between 3 and 20 characters</span
+                    >
+                  }
+                </div>
+              }
             </div>
+
             <div class="relative">
               <span class="absolute left-4 top-4 text-[#a67c37]">
                 <svg
@@ -178,6 +195,19 @@
                 placeholder="Your Email"
                 class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#a67c37]"
               />
+              @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                <div class="flex flex-col mt-1">
+                  @if (contactForm.get('email')?.hasError('required')) {
+                    <span class="text-red-500 text-sm ps-1"> • email is required</span>
+                  }
+
+                  @if (contactForm.get('email')?.hasError('email')) {
+                    <span class="text-red-500 text-sm ps-1">
+                      • Please enter a valid email address</span
+                    >
+                  }
+                </div>
+              }
             </div>
           </div>
 
@@ -204,6 +234,19 @@
               placeholder="write it with country code!"
               class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#a67c37]"
             />
+            @if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
+              <div class="flex flex-col mt-1">
+                @if (contactForm.get('phone')?.hasError('required')) {
+                  <span class="text-red-500 text-sm ps-1"> • phone is required</span>
+                }
+
+                @if (contactForm.get('phone')?.hasError('pattern')) {
+                  <span class="text-red-500 text-sm ps-1">
+                    • Include your country code (e.g., +20...) and a valid numbers</span
+                  >
+                }
+              </div>
+            }
           </div>
 
           <div class="relative">
@@ -229,23 +272,32 @@
               placeholder="Your Message"
               class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#a67c37] resize-none"
             ></textarea>
+            @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+              <div class="flex flex-col mt-1">
+                <span class="text-red-500 text-sm ps-1"> • message is required</span>
+              </div>
+            }
           </div>
 
           <button
+            [disabled]="isloading"
             type="submit"
             class="w-full bg-[#a67c37] text-white py-4 rounded font-semibold hover:bg-[#8e692e] transition-colors flex items-center justify-center gap-2"
           >
-            Send Message
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 rotate-90"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
-              />
-            </svg>
+            @if (isloading) {
+              <i class="fa-solid fa-spinner fa-spin"></i>
+            } @else {
+              send message<svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 rotate-90"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                />
+              </svg>
+            }
           </button>
         </form>
       </div>

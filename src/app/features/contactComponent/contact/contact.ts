@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment.development';
 import { EmailService } from '../../../core/services/emailService/email-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact',
@@ -11,29 +12,33 @@ import { EmailService } from '../../../core/services/emailService/email-service'
 })
 export class Contact {
   private readonly emailService = inject(EmailService);
-
-  // Alert & loading states
-  isSubmitting = false;
-  showAlert = false;
-  alertMessage = '';
-  color = 'green';
-
+  isloading: boolean = false;
   contactForm: FormGroup = new FormGroup({
-    name: new FormControl(null, Validators.required),
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20),
+    ]),
     email: new FormControl(null, [Validators.required, Validators.email]),
-    phone: new FormControl(null, Validators.required),
+    phone: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/),
+    ]),
     message: new FormControl(null, Validators.required),
   });
 
-  // Getter for alert dynamic classes (remains unchanged)
-  get alertColor(): string {
-    return `text-${this.color}-400`;
-  }
+  prepareApiData(name: any, email: any, phone: any, msg: any): FormData {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('message', msg);
 
-  hideAlert(): void {
-    setTimeout(() => {
-      this.showAlert = false;
-    }, 5000);
+    // -- Email customization API meta keys
+    formData.append('access_key', environment.web3formsKey);
+    formData.append('subject', `Request From ${this.contactForm.value.name} `);
+    formData.append('from_name', 'New Request from LE GRAND Website');
+    return formData;
   }
 
   onSubmit(): void {
@@ -42,48 +47,56 @@ export class Contact {
       return;
     }
 
-    this.isSubmitting = true;
-
-    // -- Set formData values from the Reactive Form
-    const formData = new FormData();
-    formData.append('name', this.contactForm.value.name);
-    formData.append('email', this.contactForm.value.email);
-    formData.append('phone', this.contactForm.value.phone);
-    formData.append('message', this.contactForm.value.message);
-
-    // -- Email customization API meta keys
-    formData.append('access_key', environment.web3formsKey);
-    formData.append('subject', `Request From ${this.contactForm.value.name} `);
-    formData.append('from_name', 'New Request from LE GRAND Website');
+    this.isloading = true;
+    const formData: FormData = this.prepareApiData(
+      this.contactForm.value.name,
+      this.contactForm.value.email,
+      this.contactForm.value.phone,
+      this.contactForm.value.message,
+    );
 
     // -- Send email using your custom HttpClient service
     this.emailService.sendEmail(formData).subscribe({
       next: (res) => {
         if (res.success) {
-          this.alertMessage = res.body?.message || 'Email sent successfully!';
-          this.color = 'green';
+          this.isloading = false;
           this.contactForm.reset();
-        } else {
-          // Handles 400 or 429 structured API errors
-          this.alertMessage =
-            res.body?.message || res.message || 'Something went wrong, try again later!';
-          this.color = 'red';
+          Swal.fire({
+            toast: true, // Enforces the micro-toast visual layout
+            position: 'top-end',
+            icon: 'success',
+            title: 'Success!',
+            text: 'Message sent successfully.',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'rounded-xl border border-slate-100 bg-white shadow-xl dark:bg-zinc-900',
+              title: 'text-sm font-semibold text-slate-800 dark:text-zinc-100',
+            },
+          });
         }
-        this.finalizeSubmission();
       },
+
       error: (err) => {
-        // Handles 500 server crashes or network failures
-        console.error(err);
-        this.alertMessage = 'Something went wrong, try again later!';
-        this.color = 'red';
-        this.finalizeSubmission();
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Check your connection and try again!',
+          showConfirmButton: false,
+          timer: 2500, // Slightly longer so users have time to read the error message
+          timerProgressBar: true, // Adds a subtle visual countdown bar at the bottom
+          customClass: {
+            popup:
+              'rounded-xl border border-red-100 bg-white shadow-xl dark:bg-zinc-900 dark:border-red-950/50',
+            title: 'text-sm font-semibold text-red-600 dark:text-red-400',
+            htmlContainer: 'text-xs text-slate-500 dark:text-slate-400 font-normal',
+          },
+        });
+
+        this.contactForm.reset();
       },
     });
-  }
-
-  private finalizeSubmission(): void {
-    this.isSubmitting = false;
-    this.showAlert = true;
-    this.hideAlert();
   }
 }

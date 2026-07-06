@@ -2,10 +2,10 @@
   class="bg-neutral-primary-soft block rounded-2xl font-sans text-[#1A1A1A] lg:sticky lg:top-[10%] border border-gray-200"
 >
   <div class="lg:flex">
-    <div class="h-85 w-full lg:w-3/4 md:h-170 lg:overflow-hidden xl:h-145 md:mx-auto">
+    <div class="h-100 w-full lg:w-3/4 md:h-170 lg:h-85 lg:overflow-hidden xl:h-145 md:mx-auto">
       <img
         [src]="activeImage"
-        alt="pyramids view room"
+        [alt]="room?.title"
         class="w-full h-full object-cover rounded-t-xl lg:rounded-tl-2xl"
       />
     </div>
