@@ -16,10 +16,9 @@ export class Facilities implements OnInit {
     this.facilitiesService.getFacilities().subscribe(
       (res) => {
         this.facilites = res;
-        console.log('facilites res done');
       },
       (err) => {
-        console.log('error in fac res');
+        console.error('Error fetching reviews:', err);
       },
     );
   }

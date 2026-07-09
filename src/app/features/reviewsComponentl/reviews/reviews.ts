@@ -18,7 +18,6 @@ export class Reviews implements OnInit {
     this.reviewService.getReviews().subscribe({
       next: (res) => {
         this.reviews = res;
-        console.log('reviews req done');
       },
       error: (err) => {
         console.error('Error fetching reviews:', err);
