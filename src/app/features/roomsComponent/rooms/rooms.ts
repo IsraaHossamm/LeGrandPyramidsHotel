@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RoomCard } from '../../roomCardComponent/room-card/room-card';
 import { RoomDetails } from '../../roomDetailsComponent/room-details/room-details';
 import { RoomService } from '../../../core/services/roomservice/roomService';
 import { Room } from '../../../core/interfaces/room';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-rooms',
@@ -12,6 +13,7 @@ import { Room } from '../../../core/interfaces/room';
 })
 export class Rooms implements OnInit {
   private readonly roomService = inject(RoomService);
+  private readonly pLATFORM_ID = inject(PLATFORM_ID);
   rooms: Room[] = [];
   selectedRoom?: Room;
 
@@ -31,13 +33,15 @@ export class Rooms implements OnInit {
 
   // Detect which slide is currently centered on the screen
   onMobileScroll(event: Event): void {
-    const element = event.target as HTMLElement;
-    const scrollLeft = element.scrollLeft;
-    const clientWidth = element.clientWidth;
+    if (isPlatformBrowser(this.pLATFORM_ID)) {
+      const element = event.target as HTMLElement;
+      const scrollLeft = element.scrollLeft;
+      const clientWidth = element.clientWidth;
 
-    if (clientWidth > 0) {
-      // Math.round ensures the step flips exactly when crossing the halfway midpoint
-      this.currentRoomIndex = Math.round(scrollLeft / clientWidth);
+      if (clientWidth > 0) {
+        // Math.round ensures the step flips exactly when crossing the halfway midpoint
+        this.currentRoomIndex = Math.round(scrollLeft / clientWidth);
+      }
     }
   }
 }

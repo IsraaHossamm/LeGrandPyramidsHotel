@@ -1,16 +1,16 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Review } from '../../interfaces/review';
+
+// 1. Directly import your local reviews JSON data
+import reviewsData from '../../../../../public/assets/data/reviews.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReviewService {
-  private jsonUrl = '/assets/data/reviews.json';
-  private readonly httpClient = inject(HttpClient);
-
   getReviews(): Observable<Review[]> {
-    return this.httpClient.get<Review[]>(this.jsonUrl);
+    // 2. Return it instantly as a safe observable stream
+    return of(reviewsData as Review[]);
   }
 }

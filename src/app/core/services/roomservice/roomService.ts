@@ -1,16 +1,16 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Room } from '../../interfaces/room';
+
+// 1. Directly import your local rooms JSON data
+import roomsData from '../../../../../public/assets/data/Rooms.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoomService {
-  private jsonUrl = '/assets/data/Rooms.json';
-  private readonly httpClient = inject(HttpClient);
-
   getRooms(): Observable<Room[]> {
-    return this.httpClient.get<Room[]>(this.jsonUrl);
+    // 2. Return it instantly as a safe observable stream
+    return of(roomsData as Room[]);
   }
 }

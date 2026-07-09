@@ -22,7 +22,6 @@ export class Navbar implements OnInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
   private isBrowser: boolean;
 
-  // Flag to temporarily block the IntersectionObserver during click-triggered smooth scrolls
   private isManualScrolling = false;
   private scrollTimeout: any;
 
@@ -34,9 +33,15 @@ export class Navbar implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.startTyping();
+    // 1. Move typing animation inside the browser guard so it never blocks the Netlify server pipeline
+    if (this.isBrowser) {
+      this.startTyping();
+      setTimeout(() => this.initScrollObserver(), 300);
+    } else {
+      // Server fallback: Show full text immediately for SEO crawlers and instant layout
+      this.displayText = this.fullText;
+    }
 
-    // Sync active link if the URL changes directly on page load
     this.routerSub = this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -45,10 +50,6 @@ export class Navbar implements OnInit, OnDestroy {
           this.activeFragment = tree.fragment || 'home';
         }
       });
-
-    if (this.isBrowser) {
-      setTimeout(() => this.initScrollObserver(), 300);
-    }
   }
 
   initScrollObserver() {
@@ -65,7 +66,6 @@ export class Navbar implements OnInit, OnDestroy {
 
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Update the UI state ONLY. URL navigation code has been removed.
           this.activeFragment = entry.target.id;
         }
       });
@@ -100,16 +100,16 @@ export class Navbar implements OnInit, OnDestroy {
   scrollToSection(sectionId: string) {
     this.isMenuOpen = false;
     this.activeFragment = sectionId;
-
     this.isManualScrolling = true;
 
     if (this.scrollTimeout) clearTimeout(this.scrollTimeout);
 
-    // Removed the router.navigate code here so clicking a link won't change the URL fragment either.
-
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // 2. Protect browser DOM document querying
+    if (this.isBrowser) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     this.scrollTimeout = setTimeout(() => {

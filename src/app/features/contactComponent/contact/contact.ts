@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment.development';
 import { EmailService } from '../../../core/services/emailService/email-service';
 import Swal from 'sweetalert2';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class Contact {
   private readonly emailService = inject(EmailService);
+  private readonly pLATFORM_ID = inject(PLATFORM_ID);
   isloading: boolean = false;
   contactForm: FormGroup = new FormGroup({
     name: new FormControl(null, [
@@ -47,56 +49,58 @@ export class Contact {
       return;
     }
 
-    this.isloading = true;
-    const formData: FormData = this.prepareApiData(
-      this.contactForm.value.name,
-      this.contactForm.value.email,
-      this.contactForm.value.phone,
-      this.contactForm.value.message,
-    );
+    if (isPlatformBrowser(this.pLATFORM_ID)) {
+      this.isloading = true;
+      const formData: FormData = this.prepareApiData(
+        this.contactForm.value.name,
+        this.contactForm.value.email,
+        this.contactForm.value.phone,
+        this.contactForm.value.message,
+      );
 
-    // -- Send email using your custom HttpClient service
-    this.emailService.sendEmail(formData).subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.isloading = false;
-          this.contactForm.reset();
+      // -- Send email using your custom HttpClient service
+      this.emailService.sendEmail(formData).subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.isloading = false;
+            this.contactForm.reset();
+            Swal.fire({
+              toast: true, // Enforces the micro-toast visual layout
+              position: 'top-end',
+              icon: 'success',
+              title: 'Success!',
+              text: 'Message sent successfully.',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'rounded-xl border border-slate-100 bg-white shadow-xl dark:bg-zinc-900',
+                title: 'text-sm font-semibold text-slate-800 dark:text-zinc-100',
+              },
+            });
+          }
+        },
+
+        error: (err) => {
           Swal.fire({
-            toast: true, // Enforces the micro-toast visual layout
+            toast: true,
             position: 'top-end',
-            icon: 'success',
-            title: 'Success!',
-            text: 'Message sent successfully.',
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Check your connection and try again!',
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2500, // Slightly longer so users have time to read the error message
+            timerProgressBar: true, // Adds a subtle visual countdown bar at the bottom
             customClass: {
-              popup: 'rounded-xl border border-slate-100 bg-white shadow-xl dark:bg-zinc-900',
-              title: 'text-sm font-semibold text-slate-800 dark:text-zinc-100',
+              popup:
+                'rounded-xl border border-red-100 bg-white shadow-xl dark:bg-zinc-900 dark:border-red-950/50',
+              title: 'text-sm font-semibold text-red-600 dark:text-red-400',
+              htmlContainer: 'text-xs text-slate-500 dark:text-slate-400 font-normal',
             },
           });
-        }
-      },
-
-      error: (err) => {
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Check your connection and try again!',
-          showConfirmButton: false,
-          timer: 2500, // Slightly longer so users have time to read the error message
-          timerProgressBar: true, // Adds a subtle visual countdown bar at the bottom
-          customClass: {
-            popup:
-              'rounded-xl border border-red-100 bg-white shadow-xl dark:bg-zinc-900 dark:border-red-950/50',
-            title: 'text-sm font-semibold text-red-600 dark:text-red-400',
-            htmlContainer: 'text-xs text-slate-500 dark:text-slate-400 font-normal',
-          },
-        });
-
-        this.contactForm.reset();
-      },
-    });
+          this.isloading = false;
+          this.contactForm.reset();
+        },
+      });
+    }
   }
 }

@@ -13,13 +13,14 @@ export class Facilities implements OnInit {
   facilites: Facilite[] = [];
 
   ngOnInit(): void {
-    this.facilitiesService.getFacilities().subscribe(
-      (res) => {
+    // Modernized object configuration syntax
+    this.facilitiesService.getFacilities().subscribe({
+      next: (res) => {
         this.facilites = res;
       },
-      (err) => {
-        console.error('Error fetching reviews:', err);
+      error: (err) => {
+        console.error('Error fetching facilities:', err); // Fixed log text typo
       },
-    );
+    });
   }
 }
